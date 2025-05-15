@@ -1,5 +1,6 @@
-FROM node:18-slim
+FROM node:18-bullseye
 
+# Update and install python3 and pip
 RUN apt-get update && \
     apt-get install -y python3 python3-pip && \
     pip3 install --upgrade yt-dlp
