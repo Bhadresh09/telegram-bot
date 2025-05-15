@@ -1,10 +1,13 @@
-FROM node:18-slim
+FROM debian:bullseye
 
-# Install system dependencies
+# Install Node.js 18.x
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip ffmpeg && \
+    apt-get install -y curl gnupg python3 python3-pip ffmpeg && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
     pip3 install --upgrade yt-dlp && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Set work directory
 WORKDIR /app
@@ -15,5 +18,5 @@ COPY . .
 # Install Node.js dependencies
 RUN npm install
 
-# Start the bot
+# Start the server and bot
 CMD ["npm", "start"]
