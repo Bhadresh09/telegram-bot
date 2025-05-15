@@ -1,0 +1,12 @@
+{
+  "name": "telegram-video-downloader-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot to download YouTube/Facebook videos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}
