@@ -1,5 +1,6 @@
 const TelegramBot = require("node-telegram-bot-api");
 const { exec } = require("child_process");
+const express = require("express");
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 if (!TOKEN) {
@@ -45,4 +46,16 @@ bot.on("message", async (msg) => {
       console.error("Send error:", sendErr);
     });
   });
+});
+
+// Express server to keep Render happy
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Telegram video downloader bot is running!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
